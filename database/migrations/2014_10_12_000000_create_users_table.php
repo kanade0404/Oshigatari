@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             // 自己紹介文
             $table->text('profile')->nullable();
             // アイコン画像
-            $table->text('image');
+            $table->text('image')->nullable();
             // 論理削除
             $table->boolean('is_active')->default(true);
             // スタッフ

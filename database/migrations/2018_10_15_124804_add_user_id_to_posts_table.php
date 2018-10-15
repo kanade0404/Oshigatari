@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddClusterIdBelongToClustersTable extends Migration
+class AddUserIdToPostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddClusterIdBelongToClustersTable extends Migration
      */
     public function up()
     {
-        Schema::table('clusters', function (Blueprint $table) {
-            //
+        Schema::table('posts', function (Blueprint $table) {
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')
+                ->references('id')->on('users');
         });
     }
 
@@ -25,8 +27,8 @@ class AddClusterIdBelongToClustersTable extends Migration
      */
     public function down()
     {
-        Schema::table('clusters', function (Blueprint $table) {
-            //
+        Schema::table('posts', function (Blueprint $table) {
+            $table->dropForeign('posts_user_id_foreign');
         });
     }
 }
